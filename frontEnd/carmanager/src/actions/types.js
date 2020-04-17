@@ -1,0 +1,5 @@
+export const GET_CARS = 'GET_CARS'
+export const GET_CAR_ID = 'GET_CAR_ID'
+export const ADD_CAR = 'ADD_CAR'
+export const EDIT_CAR = 'EDIT_CAR'
+export const DELETE_CAR = 'DELETE_CAR'
