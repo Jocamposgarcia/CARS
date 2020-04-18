@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { getCars } from './actions/car';
+import { getCars, addCars } from './actions/car';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import store from './store'
 
 
 class Home extends Component {
@@ -11,13 +12,26 @@ class Home extends Component {
         cars: ['cars']
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         this.props.getCars()
 
 
 
 
 
+    }
+
+    dispatchCars = () => {
+
+        const newCar = {
+            "make": "Dodge",
+            "model": "Caravan",
+            "year": 2003,
+            "mileage": 250000
+
+        }
+
+        store.dispatch(addCars(newCar))
     }
 
 
@@ -37,18 +51,19 @@ class Home extends Component {
 
 
     render() {
-
+        console.log('render.. ', this.props.cars)
 
         return (
             <div>
                 <p>{this.state.cars}</p>
                 <p>working</p>
+                <button onClick={this.dispatchCars}>Dispatch cars</button>
 
-                {
+                {/* {
                     this.props.cars.map(car => {
                         return <h1>{car.make}</h1>
                     })
-                }
+                } */}
 
             </div >
         )
@@ -60,4 +75,4 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps,
-    { getCars })(Home)
+    { getCars, addCars })(Home)

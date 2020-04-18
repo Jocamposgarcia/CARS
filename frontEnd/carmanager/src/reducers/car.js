@@ -13,6 +13,12 @@ export default function (state = initialState, action) {
                 cars: action.payload
             }
 
+        case ADD_CAR:
+            return {
+                ...state,
+                cars: [...state.cars, action.payload]
+            }
+
         default:
             return state;
     }
