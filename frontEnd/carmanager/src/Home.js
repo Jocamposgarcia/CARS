@@ -59,11 +59,11 @@ class Home extends Component {
                 <p>working</p>
                 <button onClick={this.dispatchCars}>Dispatch cars</button>
 
-                {/* {
+                {
                     this.props.cars.map(car => {
                         return <h1>{car.make}</h1>
                     })
-                } */}
+                }
 
             </div >
         )
