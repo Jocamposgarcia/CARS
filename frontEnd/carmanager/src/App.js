@@ -1,32 +1,28 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { getCars } from './actions/car';
 import { connect } from 'react-redux';
+import axios from 'axios';
+import { Provider } from 'react-redux';
+import store from './store';
+import Home from './Home';
 
 class App extends Component {
 
-  componentDidMount() {
-    this.props.getCars();
-  }
-
-  componentDidUpdate() {
-    console.log('logging', this.props.cars)
-  }
 
 
 
   render() {
 
+
     return (
-      <div>
-        <p>working</p>
-      </div>
+      <Provider store={store}>
+        <Fragment>
+          <Home />
+        </Fragment>
+      </Provider>
     )
   }
 }
 
-const mapStateToProps = (state) => ({
-  cars: state.cars
-})
 
-export default connect(mapStateToProps,
-  { getCars })(App)
+export default App
