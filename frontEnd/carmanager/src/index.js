@@ -4,12 +4,6 @@ import App from './App';
 import { Provider } from 'react-redux';
 import store from './store';
 
-if (process.env.NODE_ENV === 'development') {
-  const whyDidYouRender = require('@welldone-software/why-did-you-render');
-  whyDidYouRender(React, {
-    trackAllPureComponents: true,
-  });
-}
 
 ReactDOM.render(
   <React.StrictMode>

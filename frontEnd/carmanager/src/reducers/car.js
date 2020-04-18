@@ -13,6 +13,8 @@ export default function (state = initialState, action) {
                 cars: action.payload
             }
 
+        // if this is commented out then the prop state will not be updated after
+        // a car has been added
         case ADD_CAR:
             return {
                 ...state,
