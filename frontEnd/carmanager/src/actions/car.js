@@ -15,5 +15,17 @@ export const getCars = () => (dispatch) => {
     return response
 };
 
+export const addCars = (car) => (dispatch) => {
+    axios.post('http://localhost:8000/api/cars/', car)
+        .then((resp) => {
+            dispatch({
+                type: ADD_CAR,
+                payload: resp.data
+
+            })
+        })
+
+};
+
 
 

@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
-import { getCars } from './actions/car';
+import { getCars, addCars } from './actions/car';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import store from './store'
 
+
+if (process.env.NODE_ENV === 'development') {
+    const whyDidYouRender = require('@welldone-software/why-did-you-render');
+    whyDidYouRender(React, {
+        trackAllPureComponents: true,
+    });
+}
 
 class Home extends Component {
 
@@ -11,13 +19,26 @@ class Home extends Component {
         cars: ['cars']
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         this.props.getCars()
 
 
 
 
 
+    }
+
+    dispatchCars = () => {
+
+        const newCar = {
+            "make": "Dodge",
+            "model": "Caravan",
+            "year": 2003,
+            "mileage": 250000
+
+        }
+
+        store.dispatch(addCars(newCar))
     }
 
 
@@ -37,12 +58,13 @@ class Home extends Component {
 
 
     render() {
-
+        console.log('render.. ', this.props.cars)
 
         return (
             <div>
                 <p>{this.state.cars}</p>
                 <p>working</p>
+                <button onClick={this.dispatchCars}>Dispatch cars</button>
 
                 {
                     this.props.cars.map(car => {
@@ -60,4 +82,4 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps,
-    { getCars })(Home)
+    { getCars, addCars })(Home)
