@@ -2,7 +2,7 @@ import { GET_CARS, GET_CAR_ID, ADD_CAR, EDIT_CAR, DELETE_CAR } from '../actions/
 
 
 const initialState = {
-    cars: []
+    cars: [],
 };
 
 export default function (state = initialState, action) {
@@ -20,6 +20,23 @@ export default function (state = initialState, action) {
                 ...state,
                 cars: [...state.cars, action.payload]
             }
+
+        case EDIT_CAR:
+            return {
+                ...state,
+                cars: state.cars.map(car =>
+                    car.id === action.payload.id ? action.payload : car)
+
+
+
+            }
+
+        case DELETE_CAR:
+            return {
+                ...state,
+                cars: state.cars.filter(car => car.id !== action.payload)
+            }
+
 
         default:
             return state;
