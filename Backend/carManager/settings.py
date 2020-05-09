@@ -25,7 +25,9 @@ SECRET_KEY = 'ke&fmfuwlouxji2a#@xjeb!jqibpsp4=o9lw=ka+ahv%#a4qx+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost', '0.0.0.0', '192.168.1.170'
+]
 
 
 # Application definition
@@ -39,12 +41,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cars',
     'rest_framework',
-    'corsheaders', #cors
-    
+    'corsheaders',  # cors
+
 ]
 
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.DjangoModelPermissions',)
+# }
+
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', #cors
+    'corsheaders.middleware.CorsMiddleware',  # cors
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -123,7 +129,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
 
 
 CORS_ORIGIN_WHITELIST = [

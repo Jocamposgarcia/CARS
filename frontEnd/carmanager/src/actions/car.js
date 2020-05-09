@@ -1,4 +1,4 @@
-import { GET_CARS, GET_CAR_ID, ADD_CAR, EDIT_CAR, DELETE_CAR } from './types'
+import { GET_CARS, ADD_CAR, EDIT_CAR, DELETE_CAR } from './types'
 import axios from 'axios';
 
 
@@ -25,17 +25,24 @@ export const addCars = (car) => (dispatch) => {
                 payload: resp.data
             })
         })
+    return response
+
 };
 
-export const editCar = (carId, car) => dispatch => {
+export const editCar = (carId, car) => (dispatch) => {
     axios.put(`http://localhost:8000/api/cars/${carId}/`, car)
-        .then(resp => {
+        .then((resp) => {
             dispatch({
                 type: EDIT_CAR,
                 payload: resp.data
-            })
+
+            });
+            console.log('EDITING A CAR...')
+
         })
+
 }
+
 
 export const deleteCar = (id) => dispatch => {
     axios.delete(`http://localhost:8000/api/cars/${id}/`)
